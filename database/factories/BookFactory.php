@@ -17,7 +17,7 @@ class BookFactory extends Factory
         //'title' =>fake()->name
             'title'=>$this->name,
            // 'author_id' => Author::inRandomOrder()->id,
-         'author_id' => $author->id;
+         'author_id' => $author->id,
             'publisher_id' => null
         ];
     }
