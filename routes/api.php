@@ -26,7 +26,15 @@ Route::get('/', function () {
 });
 
 
-// ::class prints the FQN, which is App\Http\Controllers\BookControllers
+// ::class prints the FQCN, which is App\Http\Controllers\BookControllers
 Route::get('/books', [BookController::class, 'index']);
 
 Route::get('/books/{book}', [BookController::class, 'show']);
+
+// INDEX: list resource
+// SHOW:  single resource
+// STORE: create a new resource
+// UPDATE: updating a resource
+// DESTORY: deleting/destroying a resource
+
+Route::post('/books', [BookController::class, 'store']);

@@ -40,14 +40,37 @@ class BookController extends Controller
 
         //this will load author on book
         //this does a query
-        $author= $book->author;
-
+        $book->load('author');
+        return $book;
         //this does NOT do a query
             //$authorOther = $book->author;
 
          //dd($book);
         //  $book = Book::find($id);
-        return $book;
         
+        
+    }
+
+    public function store(Request $request)
+    {
+        //dd($request->all());
+        $title = $request->input('title');
+        $authorId = $request->input('author_id', null);
+        $publisherId = $request->input('publisher_id', null);
+
+        // $book = new Book([]);
+        // $book = Book::make([]); = ::make() is the same as new Class() (only for models)
+        // $book->save(); if you "new Model" or "::make() a model, yo0u have to call save
+        // ::create does both
+        $book = Book::create([
+            'title' => $title,
+        ]);
+
+       // $book = Book::create($request->all());
+
+       $book->author()->associate($authorId);
+       $bool->save();
+
+        return $book;
     }
 }
