@@ -58,11 +58,8 @@ class BookController extends Controller
         $authorId = $request->input('author_id', null);
         $publisherId = $request->input('publisher_id', null);
 
-        // $book = new Book([]);
-        // $book = Book::make([]); = ::make() is the same as new Class() (only for models)
-        // $book->save(); if you "new Model" or "::make() a model, yo0u have to call save
-        // ::create does both
-        $book = Book::create([
+
+        $book = Book::make([
             'title' => $title,
         ]);
 
@@ -72,5 +69,22 @@ class BookController extends Controller
        $bool->save();
 
         return $book;
+    }
+
+    //PUT -- the entire object must be provided, meaning any missing fields are updated to null
+    //PATCH --  change whatever fields are provided, and leave the rest alone!
+
+    public function update(Request $request, Book $book) 
+    {
+      //  dd($request->all(), $book);
+      $data = [];
+
+      if($request->has('title')){
+        $book->title = $request->input('title');
+      }
+     
+      $book->save();
+
+      return $book;
     }
 }

@@ -38,3 +38,5 @@ Route::get('/books/{book}', [BookController::class, 'show']);
 // DESTORY: deleting/destroying a resource
 
 Route::post('/books', [BookController::class, 'store']);
+
+Route::patch('/books/{book}', [BookController::class, 'update'])
