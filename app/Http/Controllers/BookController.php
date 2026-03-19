@@ -87,4 +87,13 @@ class BookController extends Controller
 
       return $book;
     }
+
+    public function destory(Book $book)
+    {
+        $book->delete();
+
+        return json_encode([
+            'status' => 'success'
+        ]);
+    }
 }
